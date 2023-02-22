@@ -3,7 +3,9 @@
 /**
  * print_sign - function that prints sign
  * @n: parameter
- * Return: 1 ,0 and -1
+ * Return: 1 if positive
+ * 0 if zero
+ * and -1 if negative
  */
 int print_sign(int n)
 {
@@ -14,12 +16,12 @@ int print_sign(int n)
 	}
 	else if (n == 0)
 	{
-		_putchar('0');;
+		_putchar('0');
 		return (0);
 	}
 	else
 	{
-		_putchar('_');
+		_putchar('-');
 		return (-1);
 	}
 }

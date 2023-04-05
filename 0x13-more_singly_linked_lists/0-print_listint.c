@@ -1,6 +1,6 @@
 #include "list.h"
 /**
- * listint_len - returns the length
+ * print_listint - prints elements in the list
  * @h: pointer to the linked list
  * Return: number of nodes
  */
@@ -11,7 +11,7 @@ size_t print_listint(const listint_t *h)
 
 	while (h != NULL)
 	{
-		h = h -> next;
+		h = h->next;
 		init++;
 	}
 	return (init);

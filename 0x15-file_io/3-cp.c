@@ -45,23 +45,22 @@ int main(int argc, char *argv[])
 	char *file_from = argv[1];
 	char *file_to = argv[2];
 	int fd_from = open(file_from, O_RDONLY);
+	int fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	int fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	char buffer[BUFFER_SIZE];
+	ssize_t read_bytes;
+	ssize_t write_bytes;
 
 	if (fd_from == -1)
 	{
 		print_error("Can't read from file", file_from);
 		exit(98);
 	}
-	int fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-
 	if (fd_to == -1)
 	{
 		print_error("Can't write to", file_to);
 		exit(99);
 	}
-	char buffer[BUFFER_SIZE];
-	ssize_t read_bytes;
-	ssize_t write_bytes;
-
 	while ((read_bytes = read(fd_from, buffer, BUFFER_SIZE)) > 0)
 	{
 		write_bytes = write(fd_to, buffer, read_bytes);
@@ -76,12 +75,7 @@ int main(int argc, char *argv[])
 		print_error("Can't read from file", file_from);
 		exit(98);
 	}
-	if (close(fd_from) == -1)
-	{
-		print_error("Can't close fd", strerror(errno));
-		exit(100);
-	}
-	if (close(fd_to) == -1)
+	if (close(fd_from) == -1 && close(fd_to) == -1)
 	{
 		print_error("Can't close fd", strerror(errno));
 		exit(100);

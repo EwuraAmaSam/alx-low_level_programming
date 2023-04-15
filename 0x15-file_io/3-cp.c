@@ -8,7 +8,7 @@
 #define BUFFER_SIZE 1024
 
 /**
- * prints_usage - prints the usage
+ * print_usage - prints usage
  * @program_name: the name of the program
  */
 
@@ -17,10 +17,23 @@ void print_usage(char *program_name)
 	dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", program_name);
 }
 
+/**
+ * print_error - prints an error message to stderr
+ * @message: the error message
+ * @filename: the name of the file causing the error
+ */
+
 void print_error(char *message, char *filename)
 {
 	dprintf(STDERR_FILENO, "Error: %s %s\n", message, filename);
 }
+
+/**
+ * main - copies the content of a file to another file
+ * @argc: the number of arguments
+ * @argv: an array of pointers to the arguments
+ * Return: 0 if successful, or an error code otherwise
+ */
 
 int main(int argc, char *argv[])
 {
